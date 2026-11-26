@@ -18,11 +18,11 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun AppRoot() {
     var game by remember { mutableStateOf(GameModel()) }
-    GameScreen(game) { game = game.tap(it) }
+    GameScreen(game, onTap = { game = game.tap(it) }, onRestart = { game = GameModel() })
 }
 
 @Composable
-fun GameScreen(game: GameModel, onTap: (Int) -> Unit) {
+fun GameScreen(game: GameModel, onTap: (Int) -> Unit, onRestart: () -> Unit) {
     Column(Modifier.padding(16.dp)) {
         Text(text = game.turnText, modifier = Modifier.testTag("turn"))
         for (row in 0 until 3) {
@@ -37,6 +37,9 @@ fun GameScreen(game: GameModel, onTap: (Int) -> Unit) {
                     }
                 }
             }
+        }
+        Button(onClick = onRestart, modifier = Modifier.testTag("restart-button")) {
+            Text(text = "Restart")
         }
     }
 }
