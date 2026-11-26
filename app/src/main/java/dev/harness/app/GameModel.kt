@@ -26,9 +26,14 @@ data class GameModel(
     companion object {
         const val SQUARE_COUNT = 9
         private val LINES = listOf(
-            listOf(0, 1, 2), listOf(3, 4, 5), listOf(6, 7, 8),
-            listOf(0, 3, 6), listOf(1, 4, 7), listOf(2, 5, 8),
-            listOf(0, 4, 8), listOf(2, 4, 6)
-        )
+            "012",
+            "345",
+            "678",
+            "036",
+            "147",
+            "258",
+            "048",
+            "246"
+        ).map { line -> line.map { it - '0' } }
     }
 }
